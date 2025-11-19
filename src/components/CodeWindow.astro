@@ -1,5 +1,5 @@
 ---
-// Mac-style window with VS Code editor form
+// Mac-style window with VS Code editor form + AI Response
 ---
 
 <section class="code-section" id="start">
@@ -21,7 +21,7 @@
         
         <div class="comment">// Start your project with us</div>
         
-        <form class="code-form contact-form">
+        <form class="code-form contact-form" id="contact-form">
           
           <div class="code-line">
             <span class="keyword">const</span> 
@@ -77,12 +77,33 @@
           </div>
 
           <div class="code-line">
-            <button type="submit" class="submit-btn">
-              <span class="function">sendRequest</span><span class="bracket">()</span>
+            <button type="submit" class="submit-btn" id="submit-btn">
+              <span class="btn-text">
+                <span class="function">sendRequest</span><span class="bracket">()</span>
+              </span>
+              <span class="btn-loading" style="display: none;">
+                <span class="spinner"></span> analyzing...
+              </span>
             </button>
           </div>
 
         </form>
+
+        <!-- AI Response Area -->
+        <div class="ai-response" id="ai-response" style="display: none;">
+          <div class="response-header">
+            <span class="comment">// AI Analysis</span>
+          </div>
+          <div class="response-content" id="response-content">
+            <!-- Response will be injected here -->
+          </div>
+          <div class="response-actions">
+            <button class="action-btn" id="new-query-btn">
+              <span class="function">newQuery</span><span class="bracket">()</span>
+            </button>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -244,12 +265,95 @@
     font-size: 14px;
     transition: all 0.3s ease;
     margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
-  .submit-btn:hover {
+  .submit-btn:hover:not(:disabled) {
     background: #005a9e;
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0, 122, 204, 0.4);
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Spinner */
+  .spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: inline-block;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* AI Response Area */
+  .ai-response {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid #3d3d3d;
+    animation: fadeIn 0.5s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .response-header {
+    margin-bottom: 16px;
+  }
+
+  .response-content {
+    background: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    border-radius: 4px;
+    padding: 16px;
+    color: #d4d4d4;
+    line-height: 1.6;
+    font-size: 13px;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+
+  .response-content.error {
+    border-color: #f14c4c;
+    color: #f14c4c;
+  }
+
+  .response-actions {
+    margin-top: 16px;
+    display: flex;
+    gap: 12px;
+  }
+
+  .action-btn {
+    background: transparent;
+    border: 1px solid #3d3d3d;
+    color: #9cdcfe;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    font-size: 12px;
+    transition: all 0.3s ease;
+  }
+
+  .action-btn:hover {
+    border-color: #007acc;
+    background: rgba(0, 122, 204, 0.1);
   }
 
   @media (max-width: 640px) {
@@ -261,10 +365,21 @@
     .code-input {
       min-width: 150px;
     }
+
+    .response-content {
+      font-size: 12px;
+      max-height: 200px;
+    }
   }
 </style>
 
 <script type="module">
+  // ===========================================
+  // CONFIGURATION - Update this with your n8n webhook URL
+  // ===========================================
+  const N8N_WEBHOOK_URL = 'https://datatraack.app.n8n.cloud/webhook/igualab-contact';
+  // ===========================================
+
   const windowContainers = document.querySelectorAll('.window-container');
 
   const observer = new IntersectionObserver((entries) => {
@@ -286,13 +401,95 @@
       update();
       needsInput.addEventListener('input', update);
     }
-
-    const form = container.querySelector('.contact-form');
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Form submitted! AI integration coming soon.');
-      });
-    }
   });
+
+  // Form handling
+  const form = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = submitBtn?.querySelector('.btn-text');
+  const btnLoading = submitBtn?.querySelector('.btn-loading');
+  const aiResponse = document.getElementById('ai-response');
+  const responseContent = document.getElementById('response-content');
+  const newQueryBtn = document.getElementById('new-query-btn');
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Get form data
+      const formData = new FormData(form);
+      const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        serviceNeeded: formData.get('serviceNeeded'),
+        timestamp: new Date().toISOString(),
+        source: window.location.href
+      };
+
+      // Show loading state
+      if (btnText) btnText.style.display = 'none';
+      if (btnLoading) btnLoading.style.display = 'inline-flex';
+      if (submitBtn) submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(N8N_WEBHOOK_URL, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        
+        // Show AI response
+        if (aiResponse && responseContent) {
+          responseContent.textContent = result.aiResponse || result.message || 'Thank you! We will contact you soon.';
+          responseContent.classList.remove('error');
+          aiResponse.style.display = 'block';
+          
+          // Scroll to response
+          aiResponse.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Hide form (optional - keep visible for new queries)
+        // form.style.display = 'none';
+
+      } catch (error) {
+        console.error('Error:', error);
+        
+        // Show error in response area
+        if (aiResponse && responseContent) {
+          responseContent.textContent = 'Sorry, there was an error processing your request. Please try again or contact us directly at sales@igualab.com';
+          responseContent.classList.add('error');
+          aiResponse.style.display = 'block';
+        }
+      } finally {
+        // Reset button state
+        if (btnText) btnText.style.display = 'inline';
+        if (btnLoading) btnLoading.style.display = 'none';
+        if (submitBtn) submitBtn.disabled = false;
+      }
+    });
+  }
+
+  // New query button
+  if (newQueryBtn) {
+    newQueryBtn.addEventListener('click', () => {
+      if (form) form.reset();
+      if (aiResponse) aiResponse.style.display = 'none';
+      
+      // Reset counter
+      const counter = document.querySelector('.counter');
+      if (counter) counter.textContent = '0';
+      
+      // Focus on first input
+      const firstInput = form?.querySelector('input');
+      if (firstInput) firstInput.focus();
+    });
+  }
 </script>
