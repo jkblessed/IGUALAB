@@ -1,0 +1,118 @@
+---
+import TestimonialCard from './TestimonialCard.astro';
+---
+
+<section class="testimonials-section" id="testimonials">
+  <div class="testimonials-container">
+    
+    <div class="testimonials-header">
+      <h2 class="testimonials-title">What Our Clients Say</h2>
+      <p class="testimonials-subtitle">
+        Trusted by companies that chose to <span class="highlight">grow smarter</span>
+      </p>
+    </div>
+
+    <div class="testimonials-grid">
+ <TestimonialCard 
+  company="Lasting Solutions"
+  quote="What used to take days now happens in minutes. The ROI was visible within the first month."
+  role="Technology Partner"
+/>
+      
+      <TestimonialCard 
+        company="Mizzar Corp"
+        quote="Gracias a IGUALAB, automatizamos procesos que consumían horas de trabajo manual. Nuestro equipo ahora se enfoca en lo que realmente importa: hacer crecer el negocio."
+        role="Director de Operaciones"
+      />
+      
+      <TestimonialCard 
+        company="Towers INC LLC"
+        quote="La integración fue impecable y el soporte excepcional. Redujimos errores en un 80% y aumentamos nuestra productividad significativamente. Totalmente recomendados."
+        role="Gerente General"
+      />
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .testimonials-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1rem;
+  }
+
+  .testimonials-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .testimonials-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .testimonials-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .testimonials-subtitle {
+    font-size: 1rem;
+    opacity: 0.8;
+  }
+
+  .highlight {
+    color: #a855f7;
+    font-weight: 600;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Tablet: 640px+ */
+  @media screen and (min-width: 640px) {
+    .testimonials-title {
+      font-size: 1.2rem;
+    }
+
+    .testimonials-subtitle {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Desktop: 900px+ */
+  @media screen and (min-width: 900px) {
+    .testimonials-section {
+      padding: 4rem 2rem;
+    }
+
+    .testimonials-title {
+      font-size: 1.4rem;
+    }
+
+    .testimonials-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  /* Large Desktop: 1280px+ */
+  @media screen and (min-width: 1280px) {
+    .testimonials-grid {
+      gap: 2.5rem;
+    }
+  }
+</style>

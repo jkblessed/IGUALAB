@@ -1,0 +1,41 @@
+---
+import AuroraBackground from '../components/Background.astro';
+import Header from '../components/Header.astro';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'IGUALAB - Software Solutions' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Software solutions and automation for businesses" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <title>{title}</title>
+  </head>
+  <body>
+    <AuroraBackground />
+    <Header />
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #ffffff;
+    min-height: 100vh;
+  }
+</style>

@@ -1,0 +1,271 @@
+---
+// Glass morphism header with navigation
+---
+
+<header class="header">
+  <nav class="nav-container">
+    <a href="/" class="logo">IGUALAB</a>
+    
+    <!-- Desktop links -->
+    <div class="nav-links">
+      <a href="#start">Contact</a>
+      <a href="#why-us">Why Us</a>
+      <a href="#services">Services</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#testimonials">Testimonials</a>
+    </div>
+
+    <!-- Mobile hamburger -->
+    <button class="hamburger" aria-label="Menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile menu overlay -->
+<div class="mobile-overlay"></div>
+
+<!-- Mobile menu -->
+<div class="mobile-menu">
+  <div class="mobile-links">
+    <a href="#start" data-text="Contact">Contact</a>
+    <a href="#why-us" data-text="Why Us">Why Us</a>
+    <a href="#services" data-text="Services">Services</a>
+    <a href="#benefits" data-text="Benefits">Benefits</a>
+    <a href="#testimonials" data-text="Testimonials">Testimonials</a>
+  </div>
+</div>
+
+<style>
+  .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-container {
+    max-width: 72rem;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Press Start 2P', monospace;
+    background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .nav-links {
+    display: none;
+    gap: 1.5rem;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #ffffff;
+  }
+
+  /* Hamburger button */
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 32px;
+    height: 32px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .hamburger-line {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+    transition: all 0.3s ease;
+  }
+
+  .hamburger.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.active .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Mobile overlay */
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 40;
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 300px;
+    height: 100%;
+    background: rgba(10, 10, 20, 0.95);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    z-index: 45;
+    transition: right 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mobile-menu.active {
+    right: 0;
+  }
+
+  .mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .mobile-links a {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateX(20px);
+    font-family: 'Fira Code', monospace;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mobile-menu.active .mobile-links a {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .mobile-menu.active .mobile-links a:nth-child(1) { transition-delay: 0.1s; }
+  .mobile-menu.active .mobile-links a:nth-child(2) { transition-delay: 0.2s; }
+  .mobile-menu.active .mobile-links a:nth-child(3) { transition-delay: 0.3s; }
+  .mobile-menu.active .mobile-links a:nth-child(4) { transition-delay: 0.4s; }
+  .mobile-menu.active .mobile-links a:nth-child(5) { transition-delay: 0.5s; }
+
+  .mobile-links a::after {
+    content: '_';
+    animation: blink 1s infinite;
+    opacity: 0;
+  }
+
+  .mobile-menu.active .mobile-links a::after {
+    opacity: 1;
+  }
+
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .mobile-links a:hover {
+    color: #a855f7;
+  }
+
+  /* Desktop: 768px+ */
+  @media screen and (min-width: 768px) {
+    .nav-links {
+      display: flex;
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    .mobile-overlay,
+    .mobile-menu {
+      display: none;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Large Desktop */
+  @media screen and (min-width: 1024px) {
+    .nav-links {
+      gap: 2rem;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileOverlay = document.querySelector('.mobile-overlay');
+    const mobileLinks = document.querySelectorAll('.mobile-links a');
+
+    function toggleMenu() {
+      hamburger?.classList.toggle('active');
+      mobileMenu?.classList.toggle('active');
+      mobileOverlay?.classList.toggle('active');
+      document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
+    }
+
+    hamburger?.addEventListener('click', toggleMenu);
+    mobileOverlay?.addEventListener('click', toggleMenu);
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        toggleMenu();
+      });
+    });
+  });
+</script>

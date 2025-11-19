@@ -1,16 +1,149 @@
 ---
-
+import Layout from '../layouts/Layout.astro';
+import CodeWindow from '../components/CodeWindow.astro';
+import Services from '../components/Services.astro';
+import Benefits from '../components/Benefits.astro';
+import Testimonials from '../components/Testimonials.astro';
+import WhyChooseUs from '../components/WhyChooseUs.astro';
+import Footer from '../components/Footer.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+  <main>
+    <!-- Hero Section (stays fixed) -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="title">
+          Welcome to <span class="brand">IGUALAB</span>
+        </h1>
+        <p class="subtitle">
+          We transform your ideas into powerful software solutions and intelligent automations.
+        </p>
+        <span class="scroll-hint">↓ Start Now</span>
+      </div>
+    </section>
+
+    <!-- Reveal sections -->
+<div class="reveal-section"> 
+   <CodeWindow />
+   <WhyChooseUs />
+   <Benefits />
+   <Services />
+   <Testimonials />
+   <Footer />
+ </div>
+  </main>
+</Layout>
+
+<style>
+  .hero {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    padding-top: 80px;
+  }
+
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .brand {
+    background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.6em;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    opacity: 0.7;
+    max-width: 90%;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .scroll-hint {
+    font-size: 0.875rem;
+    opacity: 0.7;
+    animation: bounce 2s infinite;
+    color: #ffffff;
+  }
+
+  .reveal-section {
+    position: relative;
+    z-index: 10;
+    background: linear-gradient(
+      to bottom, 
+      transparent 0%, 
+      rgba(10, 10, 15, 0.3) 5%,
+      rgba(10, 10, 15, 0.5) 15%, 
+      rgba(10, 10, 15, 0.7) 30%
+    );
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  /* Tablet */
+  @media (min-width: 640px) {
+    .title {
+      font-size: 3rem;
+    }
+
+    .subtitle {
+      font-size: 1.125rem;
+      max-width: 80%;
+    }
+  }
+
+  /* Desktop */
+  @media (min-width: 768px) {
+    .hero-content {
+      padding-top: 0;
+    }
+
+    .title {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      max-width: 40rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  /* Large Desktop */
+  @media (min-width: 1024px) {
+    .title {
+      font-size: 4.5rem;
+    }
+
+    .subtitle {
+      font-size: 1.5rem;
+    }
+  }
+</style>

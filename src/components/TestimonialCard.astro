@@ -1,0 +1,126 @@
+---
+interface Props {
+  company: string;
+  quote: string;
+  role?: string;
+}
+
+const { company, quote, role = "Client" } = Astro.props;
+---
+
+<div class="testimonial-card">
+  <div class="avatar">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+    </svg>
+  </div>
+  <p class="quote-text">"{quote}"</p>
+  <div class="company-info">
+    <span class="company-name">{company}</span>
+    <span class="company-role">{role}</span>
+  </div>
+</div>
+
+<style>
+  .testimonial-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .testimonial-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(168, 85, 247, 0.3);
+    transform: translateY(-5px);
+  }
+
+  .avatar {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .avatar svg {
+    width: 16px;
+    height: 16px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .quote-text {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    opacity: 0.85;
+    margin-bottom: 1.25rem;
+    padding-right: 2rem;
+    font-style: italic;
+  }
+
+  .company-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .company-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #ffffff;
+  }
+
+  .company-role {
+    font-size: 0.7rem;
+    opacity: 0.5;
+  }
+
+  @media screen and (min-width: 768px) {
+    .testimonial-card {
+      padding: 1.75rem;
+    }
+
+    .avatar {
+      width: 32px;
+      height: 32px;
+    }
+
+    .avatar svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .quote-text {
+      font-size: 0.9rem;
+    }
+
+    .company-name {
+      font-size: 0.95rem;
+    }
+
+    .company-role {
+      font-size: 0.75rem;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .testimonial-card {
+      padding: 2rem;
+    }
+
+    .quote-text {
+      font-size: 0.95rem;
+    }
+
+    .company-name {
+      font-size: 1rem;
+    }
+  }
+</style>

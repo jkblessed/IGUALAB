@@ -1,0 +1,298 @@
+---
+// Mac-style window with VS Code editor form
+---
+
+<section class="code-section" id="start">
+  <div class="window-container">
+    <div class="mac-window">
+      
+      <!-- Mac Title Bar -->
+      <div class="title-bar">
+        <div class="window-buttons">
+          <span class="btn close"></span>
+          <span class="btn minimize"></span>
+          <span class="btn maximize"></span>
+        </div>
+        <span class="file-name">contact-form.ts</span>
+      </div>
+
+      <!-- VS Code Content -->
+      <div class="editor-content">
+        
+        <div class="comment">// Start your project with us</div>
+        
+        <form class="code-form contact-form">
+          
+          <div class="code-line">
+            <span class="keyword">const</span> 
+            <span class="variable">name</span> 
+            <span class="operator">=</span> 
+            <input 
+              type="text" 
+              name="name" 
+              required 
+              class="code-input" 
+              placeholder="&quot;Your name&quot;"
+              aria-label="Name"
+            />
+          </div>
+
+          <div class="code-line">
+            <span class="keyword">const</span> 
+            <span class="variable">email</span> 
+            <span class="operator">=</span> 
+            <input 
+              type="email" 
+              name="email" 
+              required 
+              class="code-input" 
+              placeholder="&quot;your@email.com&quot;"
+              aria-label="Email"
+            />
+          </div>
+
+          <div class="code-line">
+            <span class="keyword">const</span> 
+            <span class="variable">serviceNeeded</span> 
+            <span class="operator">=</span> 
+            <span class="string">`</span>
+          </div>
+          
+          <textarea 
+            name="serviceNeeded" 
+            required 
+            maxlength="200"
+            rows="4"
+            class="code-textarea needs-input"
+            placeholder="Describe what your business needs..."
+            aria-label="Service needed"
+          ></textarea>
+          
+          <div class="char-counter">
+            <span class="counter">0</span>/200 characters
+          </div>
+
+          <div class="code-line">
+            <span class="string">`</span><span class="operator">;</span>
+          </div>
+
+          <div class="code-line">
+            <button type="submit" class="submit-btn">
+              <span class="function">sendRequest</span><span class="bracket">()</span>
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .code-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  .window-container {
+    width: 100%;
+    max-width: 700px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+  }
+
+  .window-container.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mac-window {
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 
+      0 50px 100px -20px rgba(0, 0, 0, 0.5),
+      0 30px 60px -30px rgba(0, 0, 0, 0.6);
+  }
+
+  .title-bar {
+    background: #323233;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .window-buttons {
+    display: flex;
+    gap: 8px;
+  }
+
+  .btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+
+  .btn.close { background: #ff5f56; }
+  .btn.minimize { background: #ffbd2e; }
+  .btn.maximize { background: #27ca3f; }
+
+  .file-name {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: #888;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .editor-content {
+    padding: 24px;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .comment {
+    color: #6a9955;
+    margin-bottom: 20px;
+  }
+
+  .code-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .code-line {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .keyword { color: #c586c0; }
+  .variable { color: #9cdcfe; }
+  .operator { color: #d4d4d4; }
+  .string { color: #ce9178; }
+  .function { color: #dcdcaa; }
+  .bracket { color: #d4d4d4; }
+
+  .code-input {
+    background: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    color: #ce9178;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    outline: none;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .code-input:focus {
+    border-color: #007acc;
+    box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+  }
+
+  .code-input::placeholder {
+    color: #6d6d6d;
+  }
+
+  .code-textarea {
+    background: #2d2d2d;
+    border: 1px solid #3d3d3d;
+    color: #ce9178;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    padding: 12px;
+    border-radius: 4px;
+    outline: none;
+    resize: none;
+    width: 100%;
+  }
+
+  .code-textarea:focus {
+    border-color: #007acc;
+    box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
+  }
+
+  .code-textarea::placeholder {
+    color: #6d6d6d;
+  }
+
+  .char-counter {
+    text-align: right;
+    font-size: 12px;
+    color: #6d6d6d;
+    margin-top: -8px;
+  }
+
+  .submit-btn {
+    background: #007acc;
+    border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+  }
+
+  .submit-btn:hover {
+    background: #005a9e;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 122, 204, 0.4);
+  }
+
+  @media (max-width: 640px) {
+    .editor-content {
+      padding: 16px;
+      font-size: 12px;
+    }
+
+    .code-input {
+      min-width: 150px;
+    }
+  }
+</style>
+
+<script type="module">
+  const windowContainers = document.querySelectorAll('.window-container');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  windowContainers.forEach((container) => {
+    observer.observe(container);
+
+    const needsInput = container.querySelector('.needs-input');
+    const counter = container.querySelector('.counter');
+
+    if (needsInput && counter) {
+      const update = () => { counter.textContent = String(needsInput.value.length); };
+      update();
+      needsInput.addEventListener('input', update);
+    }
+
+    const form = container.querySelector('.contact-form');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Form submitted! AI integration coming soon.');
+      });
+    }
+  });
+</script>

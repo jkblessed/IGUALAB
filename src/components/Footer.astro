@@ -1,0 +1,183 @@
+---
+// Professional footer
+---
+
+<footer class="footer">
+  <div class="footer-container">
+    
+    <div class="footer-top">
+      
+      <!-- Brand -->
+      <div class="footer-brand">
+        <span class="footer-logo">IGUALAB</span>
+        <p class="footer-slogan">Let automation handle the stress. Just grow.</p>
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-section">
+        <h4>Contact</h4>
+        <ul>
+          <li>
+            <a href="mailto:sales@igualab.com">sales@igualab.com</a>
+          </li>
+          <li>Miami, FL</li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-section">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#start">Contact</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div class="footer-section">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms & Conditions</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2022 - 2025 IGUALAB. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 3rem 1rem 1.5rem;
+  }
+
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-brand {
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-slogan {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    font-style: italic;
+  }
+
+  .footer-section {
+    text-align: center;
+  }
+
+  .footer-section h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    color: #ffffff;
+  }
+
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-section li {
+    font-size: 0.8rem;
+    opacity: 0.6;
+  }
+
+  .footer-section a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+
+  .footer-section a:hover {
+    color: #a855f7;
+    opacity: 1;
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-bottom p {
+    font-size: 0.75rem;
+    opacity: 0.5;
+  }
+
+  /* Tablet: 640px+ */
+  @media screen and (min-width: 640px) {
+    .footer {
+      padding: 3rem 2rem 1.5rem;
+    }
+
+    .footer-top {
+      grid-template-columns: repeat(2, 1fr);
+      text-align: left;
+    }
+
+    .footer-brand,
+    .footer-section {
+      text-align: left;
+    }
+  }
+
+  /* Desktop: 900px+ */
+  @media screen and (min-width: 900px) {
+    .footer-top {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .footer-logo {
+      font-size: 1.1rem;
+    }
+
+    .footer-slogan {
+      font-size: 0.85rem;
+    }
+
+    .footer-section h4 {
+      font-size: 0.9rem;
+    }
+
+    .footer-section li {
+      font-size: 0.85rem;
+    }
+  }
+</style>

@@ -1,0 +1,339 @@
+---
+// Benefits section with animated statistics
+---
+
+<section class="benefits-section" id="benefits">
+  <div class="benefits-container">
+    
+    <div class="benefits-header">
+      <h2 class="benefits-title">Why Automate?</h2>
+      <p class="benefits-subtitle">
+        Real data from businesses that implemented automation
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      
+      <!-- ROI -->
+      <div class="stat-card">
+        <div class="stat-bar-container">
+          <div class="stat-bar" data-percentage="340">
+            <span class="stat-value">340%</span>
+          </div>
+        </div>
+        <div class="stat-info">
+          <h3>ROI in 18 months</h3>
+          <p>Average return on investment from workflow automation</p>
+        </div>
+        <span class="stat-source">Source: Medium / SMB Analysis</span>
+      </div>
+
+      <!-- Time Saved -->
+      <div class="stat-card">
+        <div class="stat-bar-container">
+          <div class="stat-bar" data-percentage="360">
+            <span class="stat-value">360h</span>
+          </div>
+        </div>
+        <div class="stat-info">
+          <h3>Hours Saved / Year</h3>
+          <p>Time recovered by automating repetitive tasks</p>
+        </div>
+        <span class="stat-source">Source: WorkMarket Report</span>
+      </div>
+
+      <!-- Cost Reduction -->
+      <div class="stat-card">
+        <div class="stat-bar-container">
+          <div class="stat-bar" data-percentage="50">
+            <span class="stat-value">50%</span>
+          </div>
+        </div>
+        <div class="stat-info">
+          <h3>Cost Reduction</h3>
+          <p>Savings by automating repetitive processes</p>
+        </div>
+        <span class="stat-source">Source: Statista / KRC Research</span>
+      </div>
+
+      <!-- Error Reduction -->
+      <div class="stat-card">
+        <div class="stat-bar-container">
+          <div class="stat-bar" data-percentage="70">
+            <span class="stat-value">70%</span>
+          </div>
+        </div>
+        <div class="stat-info">
+          <h3>Fewer Errors</h3>
+          <p>Reduction in manual errors and improved accuracy</p>
+        </div>
+        <span class="stat-source">Source: Capgemini Study</span>
+      </div>
+
+      <!-- Revenue Growth -->
+      <div class="stat-card">
+        <div class="stat-bar-container">
+          <div class="stat-bar" data-percentage="800">
+            <span class="stat-value">800%</span>
+          </div>
+        </div>
+        <div class="stat-info">
+          <h3>Revenue Growth</h3>
+          <p>Some SMBs reported after adopting automation</p>
+        </div>
+        <span class="stat-source">Source: Keap Report</span>
+      </div>
+
+      <!-- Manual Intervention -->
+      <div class="stat-card">
+        <div class="stat-bar-container">
+          <div class="stat-bar" data-percentage="-70">
+            <span class="stat-value">-70%</span>
+          </div>
+        </div>
+        <div class="stat-info">
+          <h3>Less Manual Work</h3>
+          <p>Reduction in manual intervention with modern automation</p>
+        </div>
+        <span class="stat-source">Source: ThinkAutomation</span>
+      </div>
+
+    </div>
+
+    <div class="benefits-cta">
+      <p class="cta-highlight">Ready to see these results in your business?</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .benefits-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 1rem;
+  }
+
+  .benefits-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .benefits-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+.benefits-title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  background: linear-gradient(135deg, #60a5fa 0%, #a855f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+  .benefits-subtitle {
+    font-size: 1rem;
+    opacity: 0.7;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .stat-card:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(168, 85, 247, 0.3);
+    transform: translateY(-3px);
+  }
+
+  .stat-bar-container {
+    height: 40px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .stat-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #a855f7 0%, #60a5fa 100%);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    transition: width 1.5s ease-out;
+  }
+
+  .stat-bar.negative {
+    background: linear-gradient(90deg, #ef4444 0%, #f59e0b 100%);
+    justify-content: flex-start;
+  }
+
+  .stat-bar.animated {
+    width: var(--bar-width);
+  }
+
+  .stat-value {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+
+  .stat-info {
+    margin-bottom: 0.75rem;
+  }
+
+  .stat-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #ffffff;
+  }
+
+  .stat-info p {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    line-height: 1.4;
+  }
+
+  .stat-source {
+    font-size: 0.65rem;
+    opacity: 0.4;
+    font-style: italic;
+  }
+
+  .benefits-cta {
+    text-align: center;
+  }
+
+  .cta-highlight {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #a855f7;
+  }
+
+  /* Tablet: 640px+ */
+  @media screen and (min-width: 640px) {
+    .benefits-title {
+      font-size: 1.5rem;
+    }
+
+    .benefits-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Desktop: 900px+ */
+  @media screen and (min-width: 900px) {
+    .benefits-section {
+      padding: 4rem 2rem;
+    }
+
+    .benefits-title {
+      font-size: 1.5rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      padding: 1.5rem;
+    }
+
+    .stat-info h3 {
+      font-size: 1.1rem;
+    }
+  }
+
+  /* Large Desktop: 1280px+ */
+  @media screen and (min-width: 1280px) {
+    .stats-grid {
+      gap: 2rem;
+    }
+
+    .stat-card {
+      padding: 2rem;
+    }
+
+    .stat-bar-container {
+      height: 50px;
+    }
+
+    .stat-value {
+      font-size: 1.125rem;
+    }
+
+    .stat-info h3 {
+      font-size: 1.2rem;
+    }
+
+    .stat-info p {
+      font-size: 0.85rem;
+    }
+
+    .cta-highlight {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<script type="module">
+  const init = () => {
+    const container = document.querySelector('#benefits');
+    const statBars = container ? container.querySelectorAll('.stat-bar') : [];
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const raw = bar.getAttribute('data-percentage') || '0';
+          const percentage = parseFloat(raw) || 0;
+          const negative = percentage < 0;
+          const displayPercentage = Math.min(Math.abs(percentage), 100);
+          bar.style.setProperty('--bar-width', `${displayPercentage}%`);
+          if (negative) bar.classList.add('negative');
+          setTimeout(() => { bar.classList.add('animated'); }, 100);
+          observer.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    statBars.forEach((bar) => {
+      observer.observe(bar);
+    });
+  };
+
+  if (document.readyState !== 'loading') {
+    init();
+  } else {
+    document.addEventListener('DOMContentLoaded', init);
+  }
+</script>
